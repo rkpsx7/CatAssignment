@@ -17,6 +17,7 @@
 - Kotlin-Coroutines
 - MVVM-Architecture
 - RoomDB, Type Convertors(storing complex data in DB)
+- Glide (Image Loading and caching)
 - Retrofit 2
 - Dagger-Hilt (DI)
 
