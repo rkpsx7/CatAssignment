@@ -29,8 +29,7 @@ class CatsRepoImpl @Inject constructor(
     override fun getFilters() = catAppDB.getFiltersDao().getFilters()
 
     override suspend fun getBreedsList() {
-        val res = api.getBreedsList().validate()
-        when (res) {
+        when (val res = api.getBreedsList().validate()) {
             is Resource.Success -> {
                 res.data?.let { breeds ->
                     catAppDB.withTransaction {

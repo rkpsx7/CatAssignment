@@ -20,14 +20,15 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="12dp"
             android:background="@drawable/filter_view_bg"
-            android:textColor="@color/blue"
             android:completionThreshold="0"
             android:drawableEnd="@drawable/ic_cancel"
+            android:drawablePadding="6dp"
             android:hint="@string/filter_by_breed"
             android:inputType="text"
             android:maxLines="1"
             android:paddingHorizontal="12dp"
             android:paddingVertical="12dp"
+            android:textColor="@color/blue"
             app:layout_constraintBottom_toTopOf="@id/rvCats"
             app:layout_constraintTop_toTopOf="parent" />
 

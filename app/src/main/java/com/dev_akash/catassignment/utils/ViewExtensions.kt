@@ -1,6 +1,5 @@
 package com.dev_akash.catassignment.utils
 
-import android.view.RoundedCorner
 import android.view.View
 import androidx.annotation.DrawableRes
 import androidx.appcompat.widget.AppCompatImageView

@@ -43,7 +43,7 @@ class MainActivity : AppCompatActivity() {
     private fun setObservers() {
         lifecycleScope.launchWhenCreated {
             viewModel.catsList.collectLatest {
-                catsAdapter.submitData(lifecycle, it)
+                catsAdapter.submitData(it)
             }
         }
     }

@@ -1,6 +1,5 @@
 package com.dev_akash.catassignment.data.paging
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -10,6 +9,7 @@ import com.dev_akash.catassignment.data.local.CatAppDB
 import com.dev_akash.catassignment.data.model.CatsDto
 import com.dev_akash.catassignment.data.model.RemoteKeys
 import com.dev_akash.catassignment.data.remote.CatApi
+import com.dev_akash.catassignment.utils.network_utils.Resource
 import com.dev_akash.catassignment.utils.network_utils.validate
 @OptIn(ExperimentalPagingApi::class)
 class CatsPagingRemoteMediator(
@@ -46,24 +46,30 @@ class CatsPagingRemoteMediator(
                 }
             }
 
-            val response = api.getCatList(currPage,breedId).validate()
-            val endOfPaginationReached = if (breedId.isNullOrBlank()) response.data.isNullOrEmpty() else true
+            when(val response = api.getCatList(currPage,breedId).validate()){
+                is Resource.Error -> {
+                    MediatorResult.Error(Throwable(response.message))
+                }
+                is Resource.Success -> {
+                    val endOfPaginationReached = if (breedId.isNullOrBlank()) response.data.isNullOrEmpty() else true
 
-            val prevPage = if (currPage == 1) null else currPage - 1
-            val nextPage = if (endOfPaginationReached) null else currPage + 1
+                    val prevPage = if (currPage == 1) null else currPage - 1
+                    val nextPage = if (endOfPaginationReached) null else currPage + 1
 
 
-            response.data?.let { cats ->
-                db.withTransaction {
-                    clearDBIfRefresh(loadType,breedId)
+                    response.data?.let { cats ->
+                        db.withTransaction {
+                            clearDBIfRefresh(loadType,breedId)
 
-                    catsDao.upsertCats(cats = cats)
-                    remoteKeysDao.upsertKeys(cats.map { RemoteKeys(it.id, prevPage, nextPage) })
+                            catsDao.upsertCats(cats = cats)
+                            remoteKeysDao.upsertKeys(cats.map { RemoteKeys(it.id, prevPage, nextPage) })
 
+                        }
+                    }
+                    MediatorResult.Success(endOfPaginationReached)
                 }
             }
 
-            MediatorResult.Success(endOfPaginationReached)
 
         } catch (e: Exception) {
             MediatorResult.Error(e)
