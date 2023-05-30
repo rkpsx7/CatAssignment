@@ -1,7 +1,7 @@
 package com.dev_akash.catassignment
 
 import android.app.Application
-import com.dev_akash.catassignment.utils.network.AuthTokenManager
+import com.dev_akash.catassignment.utils.network_utils.AuthTokenManager
 import com.dev_akash.catassignment.utils.SharedPrefs
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject

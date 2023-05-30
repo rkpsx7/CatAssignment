@@ -36,8 +36,3 @@ fun View.visibilityGone(){
 fun View.visibilityVisible(){
     this.isVisible = true
 }
-
-
-//fun getStringResource(@StringRes id:Int): String {
-//    return ApplicationKClass.INSTANCE.applicationContext.getString(id)
-//}
