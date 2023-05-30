@@ -9,6 +9,7 @@ import okhttp3.Response
 import okhttp3.ResponseBody
 import javax.inject.Inject
 
+const val NO_INTERNET_CODE = 7007
 class NetworkConnectionInterceptor @Inject constructor(
     @ApplicationContext private val context: Context
 ) : Interceptor {
@@ -21,8 +22,8 @@ class NetworkConnectionInterceptor @Inject constructor(
             Response.Builder()
                 .request(request)
                 .protocol(Protocol.HTTP_1_1)
-                .code(502)
-                .message("Network Error")
+                .code(NO_INTERNET_CODE)
+                .message("Please ensure INTERNET connection")
                 .body(ResponseBody.create(null, "{Network Not Connected}")).build()
         } else {
             try {

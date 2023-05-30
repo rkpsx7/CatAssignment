@@ -3,6 +3,7 @@ package com.dev_akash.catassignment.ui
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
@@ -107,7 +108,8 @@ class MainActivity : AppCompatActivity() {
             rvCats.layoutManager = LinearLayoutManager(this@MainActivity)
 
             catsAdapter.addLoadStateListener { loadState ->
-                when (loadState.refresh) {
+
+                when (val state = loadState.mediator?.refresh) {
                     is LoadState.NotLoading -> {
                         binding.progressBar.visibilityGone()
                     }
@@ -117,11 +119,19 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     is LoadState.Error -> {
+                        showToast(state.error.message)
                         binding.progressBar.visibilityGone()
                     }
+
+                    null ->{}
                 }
 
             }
         }
+    }
+
+
+    private fun showToast(message: String?) {
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
     }
 }

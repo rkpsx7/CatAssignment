@@ -6,9 +6,12 @@ import retrofit2.Response
 fun <T> Response<T>.validate(): Resource<T?> {
     try {
         val response = this
-        Log.d("rkpsx7rkpsx7",response.body().toString())
         if (response.isSuccessful) {
             return Resource.Success(data = response.body())
+        }
+
+        if (response.code() == NO_INTERNET_CODE) {
+            return Resource.Error(response.message())
         }
         if (response.code() == 403) {
             //Handle token expired case here
