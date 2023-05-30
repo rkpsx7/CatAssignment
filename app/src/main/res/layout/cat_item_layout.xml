@@ -11,34 +11,34 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:theme="@style/Platform.MaterialComponents.Light"
-        app:cardCornerRadius="16dp"
-        app:cardElevation="12dp"
+        app:cardCornerRadius="@dimen/_16dp"
+        app:cardElevation="@dimen/_12dp"
         app:strokeWidth="0dp"
-        android:layout_marginVertical="10dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="@dimen/_10dp"
+        android:layout_marginHorizontal="@dimen/_10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="12dp">
+        android:paddingHorizontal="@dimen/_12dp"
+        android:paddingVertical="@dimen/_12dp">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/imgCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:theme="@style/Platform.MaterialComponents.Light"
-            app:cardCornerRadius="16dp"
+            app:cardCornerRadius="@dimen/_16dp"
             app:cardUseCompatPadding="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivImage"
-                android:layout_width="120dp"
-                android:layout_height="120dp"
+                android:layout_width="@dimen/_120dp"
+                android:layout_height="@dimen/_120dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/placeholder" />
         </com.google.android.material.card.MaterialCardView>
@@ -47,10 +47,10 @@
             android:id="@+id/tvName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            android:layout_marginTop="@dimen/_12dp"
             android:textColor="@color/blue"
-            android:textSize="18sp"
+            android:textSize="@dimen/_18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/imgCard"
@@ -60,8 +60,8 @@
             android:id="@+id/tvDesc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginVertical="8dp"
+            android:layout_marginHorizontal="@dimen/_8dp"
+            android:layout_marginVertical="@dimen/_8dp"
             android:ellipsize="end"
             android:maxLines="3"
             android:textStyle="italic"
