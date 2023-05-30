@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Cats</string>
     <string name="retry">Retry</string>
-    <string name="filter_by_breed">filter by breed</string>
+    <string name="filter_by_breed">filter by breed…</string>
 </resources>

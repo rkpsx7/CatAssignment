@@ -10,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         tools:context=".ui.MainActivity">
 
         <AutoCompleteTextView
@@ -19,6 +20,7 @@
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="12dp"
             android:background="@drawable/filter_view_bg"
+            android:textColor="@color/blue"
             android:completionThreshold="0"
             android:drawableEnd="@drawable/ic_cancel"
             android:hint="@string/filter_by_breed"
@@ -46,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
