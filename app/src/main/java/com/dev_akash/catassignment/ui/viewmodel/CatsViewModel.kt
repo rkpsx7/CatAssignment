@@ -1,6 +1,8 @@
 package com.dev_akash.catassignment.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import androidx.paging.cachedIn
 import androidx.paging.filter
 import com.dev_akash.catassignment.data.repository.CatsRepoImpl
 import com.dev_akash.catassignment.utils.ioJob
@@ -12,6 +14,7 @@ import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
+
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class CatsViewModel @Inject constructor(
@@ -22,11 +25,13 @@ class CatsViewModel @Inject constructor(
     private val breedId = MutableStateFlow<String?>(null)
 
     val catsList = breedId.flatMapLatest { query ->
-        repo.getCatList(query).map {
-            if (!breedId.value.isNullOrBlank()) {
-                it.filter { it.breeds.firstOrNull()?.id == breedId.value }
-            } else it
-        }.flowOn(Dispatchers.IO)
+        repo.getCatList(query)
+            .map {
+                if (!breedId.value.isNullOrBlank()) {
+                    it.filter { it.breeds.firstOrNull()?.id == breedId.value }
+                } else it
+            }.flowOn(Dispatchers.IO)
+            .cachedIn(viewModelScope)
     }
 
 

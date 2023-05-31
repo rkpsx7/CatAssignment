@@ -21,7 +21,7 @@ class CatsRepoImpl @Inject constructor(
 ) : CatsRepo {
 
     override fun getCatList(query: String?) = Pager(
-        config = PagingConfig(pageSize = 10, maxSize = 35),
+        config = PagingConfig(pageSize = 10, maxSize = 50),
         remoteMediator = CatsPagingRemoteMediator(catAppDB, api, query),
         pagingSourceFactory = { catAppDB.getCatsDao().getCatsList() },
     ).flow
