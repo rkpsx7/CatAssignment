@@ -6,7 +6,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "CatsTable")
 data class CatsDto(
-    @PrimaryKey val id: String,
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
     val breeds: List<BreedDto>,
     val height: Int,
     val url: String,

@@ -5,6 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "FiltersTable")
 data class FiltersDto(
-    @PrimaryKey val id: String,
+    @PrimaryKey(autoGenerate = false)
+    val id: String,
     val breedName: String
 )
