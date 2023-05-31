@@ -43,4 +43,8 @@ class CatsViewModel @Inject constructor(
         )
     }
 
+
+    init {
+        prepareBreedFilterList()
+    }
 }

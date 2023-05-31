@@ -33,8 +33,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        viewModel.prepareBreedFilterList()
-
         setMainAdapter()
         setObservers()
         setFilterView()
@@ -60,10 +58,7 @@ class MainActivity : AppCompatActivity() {
 
                 val visibleDrawableEnd = if (value.isBlank()) null else drawableEnd
                 setCompoundDrawablesRelativeWithIntrinsicBounds(
-                    null,
-                    null,
-                    visibleDrawableEnd,
-                    null
+                    null, null, visibleDrawableEnd, null
                 )
             }
 
@@ -76,13 +71,6 @@ class MainActivity : AppCompatActivity() {
                 }
                 performClick()
                 return@setOnTouchListener false
-            }
-
-            /**
-             * shows the suggestion list when in focus
-             */
-            setOnFocusChangeListener { _, hasFocus ->
-                if (hasFocus) showDropDown()
             }
 
             viewModel.filters.observe(this@MainActivity) { filterDtos ->
@@ -123,15 +111,26 @@ class MainActivity : AppCompatActivity() {
                         binding.progressBar.visibilityGone()
                     }
 
-                    null ->{}
+                    null -> {}
                 }
 
             }
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        /**
+         * shows the suggestion list when in focus
+         */
+        binding.searchView.apply {
+            setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) showDropDown()
+            }
+        }
+    }
 
     private fun showToast(message: String?) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
 }
